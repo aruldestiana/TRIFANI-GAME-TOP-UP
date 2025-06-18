@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TopUp Gratis Simulator</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      background: linear-gradient(to right, #141e30, #243b55);
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 2rem;
+    }
+    h1 {
+      margin-bottom: 1rem;
+    }
+    form {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 2rem;
+      border-radius: 1rem;
+      width: 100%;
+      max-width: 400px;
+    }
+    input, select, button {
+      width: 100%;
+      padding: 0.75rem;
+      margin-top: 1rem;
+      border: none;
+      border-radius: 0.5rem;
+    }
+    button {
+      background-color: #00c853;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .result {
+      margin-top: 1.5rem;
+      font-size: 1.1rem;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Simulasi Top-Up Game Gratis</h1>
+
+  <form id="topupForm">
+    <label for="game">Pilih Game:</label>
+    <select id="game" required>
+      <option value="ml">Mobile Legends</option>
+      <option value="ff">Free Fire</option>
+      <option value="pubg">PUBG Mobile</option>
+    </select>
+
+    <label for="userid">Masukkan ID Pengguna:</label>
+    <input type="text" id="userid" placeholder="123456789 (ID Game)" required>
+
+    <label for="nominal">Jumlah Diamond/UC:</label>
+    <select id="nominal" required>
+      <option value="50">50 Diamond</option>
+      <option value="100">100 Diamond</option>
+      <option value="500">500 Diamond</option>
+    </select>
+
+    <button type="submit">Top-Up Sekarang</button>
+  </form>
+
+  <div class="result" id="result"></div>
+
+  <script>
+    document.getElementById('topupForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const game = document.getElementById('game').value;
+      const userId = document.getElementById('userid').value;
+      const nominal = document.getElementById('nominal').value;
+      const result = document.getElementById('result');
+
+      result.innerHTML = `🎉 Top-up ${nominal} berhasil dikirim ke ID ${userId} di game ${game.toUpperCase()} (Simulasi)!`;
+    });
+  </script>
+
+</body>
+</html>
