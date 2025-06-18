@@ -37,120 +37,59 @@
         <a href="#" class="hover:underline">API</a>
         <a href="#login" class="hover:underline" id="loginMenu">Login</a>
         <a href="#register" class="hover:underline" id="registerMenu">Daftar</a>
+        <a href="#" class="hover:underline hidden" id="logoutMenu" onclick="handleLogout()">Logout</a>
       </nav>
     </div>
   </header>
 
-  <!-- Login Section -->
-  <section id="login" class="container mx-auto p-6">
-    <h2 class="text-2xl font-bold mb-4">Login Pengguna</h2>
-    <form class="bg-white p-6 rounded shadow-md space-y-4" onsubmit="handleLogin(event)">
-      <div>
-        <label class="block mb-1 font-semibold">Email</label>
-        <input type="email" id="email" class="w-full border p-2 rounded" placeholder="email@example.com">
-      </div>
-      <div>
-        <label class="block mb-1 font-semibold">Password</label>
-        <input type="password" id="password" class="w-full border p-2 rounded" placeholder="********">
-      </div>
-      <button type="submit" class="bg-yellow-500 hover:bg-yellow-600 text-white py-2 px-4 rounded">Login</button>
-    </form>
+  <!-- Pencarian Game -->
+  <section class="container mx-auto px-6 mt-6">
+    <input type="text" id="searchInput" onkeyup="searchGames()" placeholder="Cari game..." class="w-full p-2 border rounded" />
   </section>
 
-  <!-- Register Section -->
-  <section id="register" class="container mx-auto p-6">
-    <h2 class="text-2xl font-bold mb-4">Daftar Akun Baru</h2>
-    <form class="bg-white p-6 rounded shadow-md space-y-4">
-      <div>
-        <label class="block mb-1 font-semibold">Nama Lengkap</label>
-        <input type="text" class="w-full border p-2 rounded" placeholder="Nama Lengkap">
+  <!-- Menu Game -->
+  <section id="menuGame" class="container mx-auto p-6">
+    <h2 class="text-2xl font-bold mb-4">Daftar Game</h2>
+    <div id="gameList" class="grid grid-cols-2 md:grid-cols-4 gap-4">
+      <div class="bg-white p-4 shadow rounded cursor-pointer" onclick="toggleHarga('hargaPubg')" data-name="PUBG Mobile">
+        <img src="https://static.vecteezy.com/system/resources/previews/021/010/060/non_2x/pubg-mobile-logo-icon-free-png.png" alt="PUBG Mobile" class="w-full h-32 object-contain mb-2">
+        <div class="text-center font-semibold">PUBG Mobile</div>
       </div>
-      <div>
-        <label class="block mb-1 font-semibold">Email</label>
-        <input type="email" class="w-full border p-2 rounded" placeholder="email@example.com">
-      </div>
-      <div>
-        <label class="block mb-1 font-semibold">Password</label>
-        <input type="password" class="w-full border p-2 rounded" placeholder="********">
-      </div>
-      <div>
-        <label class="block mb-1 font-semibold">Konfirmasi Password</label>
-        <input type="password" class="w-full border p-2 rounded" placeholder="********">
-      </div>
-      <button type="submit" class="bg-green-500 hover:bg-green-600 text-white py-2 px-4 rounded">Daftar</button>
-    </form>
-  </section>
-
-  <!-- Riwayat Pesanan Section -->
-  <section id="history" class="container mx-auto p-6">
-    <h2 class="text-2xl font-bold mb-4">Riwayat Pesanan</h2>
-    <div class="bg-white p-6 rounded shadow-md">
-      <p>Belum ada riwayat pesanan.</p>
-    </div>
-  </section>
-
-  <!-- Menu Game Setelah Login -->
-  <section id="menuGame" class="container mx-auto p-6 hidden">
-    <h2 class="text-2xl font-bold mb-4">Semua Game</h2>
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-      <div class="bg-white p-4 shadow rounded cursor-pointer" onclick="toggleHarga('hargaPubg')">PUBG Mobile</div>
-      <div class="bg-white p-4 shadow rounded">Mobile Legends</div>
-      <div class="bg-white p-4 shadow rounded">Free Fire</div>
-      <div class="bg-white p-4 shadow rounded">Throne and Liberty</div>
-      <div class="bg-white p-4 shadow rounded">Dragonest Classic SEA</div>
-      <div class="bg-white p-4 shadow rounded">World of Warcraft</div>
-      <div class="bg-white p-4 shadow rounded">Valorant</div>
-      <div class="bg-white p-4 shadow rounded">Genshin Impact</div>
+      <!-- Tambahkan game lainnya seperti sebelumnya dengan data-name sesuai -->
     </div>
     <div id="hargaPubg" class="mt-6 hidden bg-white p-4 rounded shadow">
       <h3 class="text-xl font-bold mb-2">Harga PUBG Mobile</h3>
-      <ul class="list-disc pl-5 space-y-1">
-        <li>60 UC - Rp 10.000</li>
-        <li>325 UC - Rp 50.000</li>
-        <li>660 UC - Rp 100.000</li>
-        <li>1800 UC - Rp 250.000</li>
+      <ul class="list-disc pl-5 space-y-2">
+        <li>60 UC - Rp 10.000 - <a href="https://wa.me/6281224859600?text=Halo,%20saya%20ingin%20pesan%2060%20UC%20PUBG%20Mobile" class="text-green-600 underline" target="_blank">Pesan via WA</a></li>
+        <li>325 UC - Rp 50.000 - <a href="https://wa.me/6281224859600?text=Halo,%20saya%20ingin%20pesan%20325%20UC%20PUBG%20Mobile" class="text-green-600 underline" target="_blank">Pesan via WA</a></li>
+        <li>660 UC - Rp 100.000 - <a href="https://wa.me/6281224859600?text=Halo,%20saya%20ingin%20pesan%20660%20UC%20PUBG%20Mobile" class="text-green-600 underline" target="_blank">Pesan via WA</a></li>
+        <li>1800 UC - Rp 250.000 - <a href="https://wa.me/6281224859600?text=Halo,%20saya%20ingin%20pesan%201800%20UC%20PUBG%20Mobile" class="text-green-600 underline" target="_blank">Pesan via WA</a></li>
       </ul>
     </div>
   </section>
 
-  <!-- Banner -->
-  <section class="bg-cover bg-center h-48 flex items-center justify-center" style="background-image: url('https://cdn.wallpapersafari.com/10/56/JWAs0P.jpg');">
-    <h2 class="text-3xl text-white font-bold bg-black bg-opacity-50 px-4 py-2 rounded">Top Up Game Murah & Cepat</h2>
-  </section>
-
-  <!-- WhatsApp Chat Bubble -->
-  <div class="whatsapp-chat">
-    <a href="https://wa.me/6281224859600" target="_blank" title="Chat dengan Admin">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="Chat WA">
-    </a>
-  </div>
-
-  <!-- Footer -->
-  <footer class="bg-gray-800 text-white text-center py-4 mt-8">
-    &copy; 2025 Trifani Gold. All rights reserved.
-  </footer>
-
-  <!-- Script Login Simulasi & Toggle Harga -->
+  <!-- Script Pencarian -->
   <script>
-    function handleLogin(e) {
-      e.preventDefault();
-      const email = document.getElementById("email").value;
-      const password = document.getElementById("password").value;
-      if (email && password) {
-        document.getElementById("menuGame").classList.remove("hidden");
-        document.getElementById("login").classList.add("hidden");
-        document.getElementById("register").classList.add("hidden");
-        document.getElementById("loginMenu").style.display = "none";
-        document.getElementById("registerMenu").style.display = "none";
-        alert("Login berhasil sebagai " + email);
-      } else {
-        alert("Email dan password harus diisi!");
-      }
+    function searchGames() {
+      const input = document.getElementById('searchInput').value.toLowerCase();
+      const cards = document.querySelectorAll('#gameList > div');
+
+      cards.forEach(card => {
+        const name = card.getAttribute('data-name').toLowerCase();
+        if (name.includes(input)) {
+          card.classList.remove('hidden');
+        } else {
+          card.classList.add('hidden');
+        }
+      });
     }
 
     function toggleHarga(id) {
+      const allHarga = document.querySelectorAll('[id^="harga"]');
+      allHarga.forEach(harga => harga.classList.add('hidden'));
+
       const section = document.getElementById(id);
-      section.classList.toggle("hidden");
+      section.classList.remove('hidden');
     }
   </script>
 </body>
