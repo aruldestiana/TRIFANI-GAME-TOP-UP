@@ -23,7 +23,7 @@
   <header class="bg-yellow-500 text-white p-4 shadow-md">
     <div class="container mx-auto flex justify-between items-center">
       <h1 class="text-xl font-bold">Trifani Gold</h1>
-      <nav class="space-x-3 text-sm">
+      <nav class="space-x-3 text-sm" id="mainNav">
         <a href="#" class="hover:underline">Beranda</a>
         <a href="#" class="hover:underline">Semua Game</a>
         <a href="#" class="hover:underline">Leaderboard</a>
@@ -35,8 +35,8 @@
         <a href="#" class="hover:underline">FAQ</a>
         <a href="#" class="hover:underline">Dukungan Pelanggan</a>
         <a href="#" class="hover:underline">API</a>
-        <a href="#login" class="hover:underline">Login</a>
-        <a href="#register" class="hover:underline">Daftar</a>
+        <a href="#login" class="hover:underline" id="loginMenu">Login</a>
+        <a href="#register" class="hover:underline" id="registerMenu">Daftar</a>
       </nav>
     </div>
   </header>
@@ -129,6 +129,10 @@
       const password = document.getElementById("password").value;
       if (email && password) {
         document.getElementById("menuGame").classList.remove("hidden");
+        document.getElementById("login").classList.add("hidden");
+        document.getElementById("register").classList.add("hidden");
+        document.getElementById("loginMenu").style.display = "none";
+        document.getElementById("registerMenu").style.display = "none";
         alert("Login berhasil sebagai " + email);
       } else {
         alert("Email dan password harus diisi!");
