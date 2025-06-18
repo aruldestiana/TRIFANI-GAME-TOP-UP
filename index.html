@@ -16,6 +16,12 @@
       width: 60px;
       height: 60px;
     }
+    section[id^="section-"] {
+      display: none;
+    }
+    section.active {
+      display: block;
+    }
   </style>
 </head>
 <body class="bg-gray-100 text-gray-900">
@@ -24,17 +30,17 @@
     <div class="container mx-auto flex justify-between items-center">
       <h1 class="text-xl font-bold">Trifani Gold</h1>
       <nav class="space-x-3 text-sm" id="mainNav">
-        <a href="#" class="hover:underline">Beranda</a>
-        <a href="#" class="hover:underline">Semua Game</a>
-        <a href="#" class="hover:underline">Leaderboard</a>
-        <a href="#" class="hover:underline">Cek Transaksi</a>
-        <a href="#" class="hover:underline">Light Mode</a>
-        <a href="#" class="hover:underline">Cek Region Mobile Legends</a>
-        <a href="#" class="hover:underline">Navigasi</a>
-        <a href="#" class="hover:underline">Daftar Layanan</a>
-        <a href="#" class="hover:underline">FAQ</a>
-        <a href="#" class="hover:underline">Dukungan Pelanggan</a>
-        <a href="#" class="hover:underline">API</a>
+        <a href="#" class="hover:underline" onclick="showSection('Beranda')">Beranda</a>
+        <a href="#" class="hover:underline" onclick="showSection('SemuaGame')">Semua Game</a>
+        <a href="#" class="hover:underline" onclick="showSection('Leaderboard')">Leaderboard</a>
+        <a href="#" class="hover:underline" onclick="showSection('CekTransaksi')">Cek Transaksi</a>
+        <a href="#" class="hover:underline" onclick="showSection('LightMode')">Light Mode</a>
+        <a href="#" class="hover:underline" onclick="showSection('CekRegionML')">Cek Region Mobile Legends</a>
+        <a href="#" class="hover:underline" onclick="showSection('Navigasi')">Navigasi</a>
+        <a href="#" class="hover:underline" onclick="showSection('DaftarLayanan')">Daftar Layanan</a>
+        <a href="#" class="hover:underline" onclick="showSection('FAQ')">FAQ</a>
+        <a href="#" class="hover:underline" onclick="showSection('DukunganPelanggan')">Dukungan Pelanggan</a>
+        <a href="#" class="hover:underline" onclick="showSection('API')">API</a>
         <a href="#login" class="hover:underline" id="loginMenu">Login</a>
         <a href="#register" class="hover:underline" id="registerMenu">Daftar</a>
         <a href="#" class="hover:underline hidden" id="logoutMenu" onclick="handleLogout()">Logout</a>
@@ -42,20 +48,20 @@
     </div>
   </header>
 
-  <!-- Pencarian Game -->
-  <section class="container mx-auto px-6 mt-6">
-    <input type="text" id="searchInput" onkeyup="searchGames()" placeholder="Cari game..." class="w-full p-2 border rounded" />
+  <!-- Semua Section -->
+  <section id="section-Beranda" class="container mx-auto p-6 active">
+    <h2 class="text-xl font-bold">Selamat datang di Trifani Gold</h2>
+    <p class="mt-2">Tempat top up game terpercaya dan cepat.</p>
   </section>
-
-  <!-- Menu Game -->
-  <section id="menuGame" class="container mx-auto p-6">
+  <section id="section-SemuaGame" class="container mx-auto p-6">
     <h2 class="text-2xl font-bold mb-4">Daftar Game</h2>
+    <input type="text" id="searchInput" onkeyup="searchGames()" placeholder="Cari game..." class="w-full p-2 border rounded mb-4" />
     <div id="gameList" class="grid grid-cols-2 md:grid-cols-4 gap-4">
       <div class="bg-white p-4 shadow rounded cursor-pointer" onclick="toggleHarga('hargaPubg')" data-name="PUBG Mobile">
         <img src="https://static.vecteezy.com/system/resources/previews/021/010/060/non_2x/pubg-mobile-logo-icon-free-png.png" alt="PUBG Mobile" class="w-full h-32 object-contain mb-2">
         <div class="text-center font-semibold">PUBG Mobile</div>
       </div>
-      <!-- Tambahkan game lainnya seperti sebelumnya dengan data-name sesuai -->
+      <!-- Tambahkan game lainnya di sini -->
     </div>
     <div id="hargaPubg" class="mt-6 hidden bg-white p-4 rounded shadow">
       <h3 class="text-xl font-bold mb-2">Harga PUBG Mobile</h3>
@@ -68,28 +74,37 @@
     </div>
   </section>
 
-  <!-- Script Pencarian -->
+  <section id="section-Leaderboard" class="container mx-auto p-6"><h2 class="text-xl font-bold">Leaderboard</h2></section>
+  <section id="section-CekTransaksi" class="container mx-auto p-6"><h2 class="text-xl font-bold">Cek Transaksi</h2></section>
+  <section id="section-LightMode" class="container mx-auto p-6"><h2 class="text-xl font-bold">Light Mode</h2></section>
+  <section id="section-CekRegionML" class="container mx-auto p-6"><h2 class="text-xl font-bold">Cek Region Mobile Legends</h2></section>
+  <section id="section-Navigasi" class="container mx-auto p-6"><h2 class="text-xl font-bold">Navigasi</h2></section>
+  <section id="section-DaftarLayanan" class="container mx-auto p-6"><h2 class="text-xl font-bold">Daftar Layanan</h2></section>
+  <section id="section-FAQ" class="container mx-auto p-6"><h2 class="text-xl font-bold">FAQ</h2></section>
+  <section id="section-DukunganPelanggan" class="container mx-auto p-6"><h2 class="text-xl font-bold">Dukungan Pelanggan</h2></section>
+  <section id="section-API" class="container mx-auto p-6"><h2 class="text-xl font-bold">API</h2></section>
+
+  <!-- Script -->
   <script>
+    function showSection(name) {
+      const sections = document.querySelectorAll('section[id^="section-"]');
+      sections.forEach(sec => sec.classList.remove('active'));
+      document.getElementById(`section-${name}`).classList.add('active');
+    }
+
     function searchGames() {
       const input = document.getElementById('searchInput').value.toLowerCase();
       const cards = document.querySelectorAll('#gameList > div');
-
       cards.forEach(card => {
         const name = card.getAttribute('data-name').toLowerCase();
-        if (name.includes(input)) {
-          card.classList.remove('hidden');
-        } else {
-          card.classList.add('hidden');
-        }
+        card.classList.toggle('hidden', !name.includes(input));
       });
     }
 
     function toggleHarga(id) {
       const allHarga = document.querySelectorAll('[id^="harga"]');
       allHarga.forEach(harga => harga.classList.add('hidden'));
-
-      const section = document.getElementById(id);
-      section.classList.remove('hidden');
+      document.getElementById(id).classList.remove('hidden');
     }
   </script>
 </body>
