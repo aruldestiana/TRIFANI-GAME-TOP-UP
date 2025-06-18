@@ -93,7 +93,7 @@
   <section id="menuGame" class="container mx-auto p-6 hidden">
     <h2 class="text-2xl font-bold mb-4">Semua Game</h2>
     <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-      <div class="bg-white p-4 shadow rounded">PUBG Mobile</div>
+      <div class="bg-white p-4 shadow rounded cursor-pointer" onclick="toggleHarga('hargaPubg')">PUBG Mobile</div>
       <div class="bg-white p-4 shadow rounded">Mobile Legends</div>
       <div class="bg-white p-4 shadow rounded">Free Fire</div>
       <div class="bg-white p-4 shadow rounded">Throne and Liberty</div>
@@ -101,6 +101,15 @@
       <div class="bg-white p-4 shadow rounded">World of Warcraft</div>
       <div class="bg-white p-4 shadow rounded">Valorant</div>
       <div class="bg-white p-4 shadow rounded">Genshin Impact</div>
+    </div>
+    <div id="hargaPubg" class="mt-6 hidden bg-white p-4 rounded shadow">
+      <h3 class="text-xl font-bold mb-2">Harga PUBG Mobile</h3>
+      <ul class="list-disc pl-5 space-y-1">
+        <li>60 UC - Rp 10.000</li>
+        <li>325 UC - Rp 50.000</li>
+        <li>660 UC - Rp 100.000</li>
+        <li>1800 UC - Rp 250.000</li>
+      </ul>
     </div>
   </section>
 
@@ -121,7 +130,7 @@
     &copy; 2025 Trifani Gold. All rights reserved.
   </footer>
 
-  <!-- Script Login Simulasi -->
+  <!-- Script Login Simulasi & Toggle Harga -->
   <script>
     function handleLogin(e) {
       e.preventDefault();
@@ -137,6 +146,11 @@
       } else {
         alert("Email dan password harus diisi!");
       }
+    }
+
+    function toggleHarga(id) {
+      const section = document.getElementById(id);
+      section.classList.toggle("hidden");
     }
   </script>
 </body>
