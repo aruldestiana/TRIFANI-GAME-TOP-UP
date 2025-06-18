@@ -1,111 +1,119 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Trifani Gold - Top Up Game</title>
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Top Up Game - Login & Register</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
   <style>
-    .whatsapp-chat {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      z-index: 1000;
+    body {
+      background: #f0f4f8;
     }
-    .whatsapp-chat img {
-      width: 60px;
-      height: 60px;
+    .auth-container {
+      max-width: 400px;
+      margin: 80px auto;
+      padding: 30px;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
     }
-    section[id^="section-"] {
-      display: none;
-    }
-    section.active {
-      display: block;
+    .nav-link.logout {
+      color: red;
     }
   </style>
 </head>
-<body class="bg-gray-100 text-gray-900">
-  <!-- Header -->
-  <header class="bg-yellow-500 text-white p-4 shadow-md">
-    <div class="container mx-auto flex justify-between items-center">
-      <h1 class="text-xl font-bold">Trifani Gold</h1>
-      <nav class="space-x-3 text-sm" id="mainNav">
-        <a href="#" class="hover:underline" onclick="showSection('Beranda')">Beranda</a>
-        <a href="#" class="hover:underline" onclick="showSection('SemuaGame')">Semua Game</a>
-        <a href="#" class="hover:underline" onclick="showSection('Leaderboard')">Leaderboard</a>
-        <a href="#" class="hover:underline" onclick="showSection('CekTransaksi')">Cek Transaksi</a>
-        <a href="#" class="hover:underline" onclick="showSection('LightMode')">Light Mode</a>
-        <a href="#" class="hover:underline" onclick="showSection('CekRegionML')">Cek Region Mobile Legends</a>
-        <a href="#" class="hover:underline" onclick="showSection('Navigasi')">Navigasi</a>
-        <a href="#" class="hover:underline" onclick="showSection('DaftarLayanan')">Daftar Layanan</a>
-        <a href="#" class="hover:underline" onclick="showSection('FAQ')">FAQ</a>
-        <a href="#" class="hover:underline" onclick="showSection('DukunganPelanggan')">Dukungan Pelanggan</a>
-        <a href="#" class="hover:underline" onclick="showSection('API')">API</a>
-        <a href="#login" class="hover:underline" id="loginMenu">Login</a>
-        <a href="#register" class="hover:underline" id="registerMenu">Daftar</a>
-        <a href="#" class="hover:underline hidden" id="logoutMenu" onclick="handleLogout()">Logout</a>
-      </nav>
-    </div>
-  </header>
+<body>
 
-  <!-- Semua Section -->
-  <section id="section-Beranda" class="container mx-auto p-6 active">
-    <h2 class="text-xl font-bold">Selamat datang di Trifani Gold</h2>
-    <p class="mt-2">Tempat top up game terpercaya dan cepat.</p>
-  </section>
-  <section id="section-SemuaGame" class="container mx-auto p-6">
-    <h2 class="text-2xl font-bold mb-4">Daftar Game</h2>
-    <input type="text" id="searchInput" onkeyup="searchGames()" placeholder="Cari game..." class="w-full p-2 border rounded mb-4" />
-    <div id="gameList" class="grid grid-cols-2 md:grid-cols-4 gap-4">
-      <div class="bg-white p-4 shadow rounded cursor-pointer" onclick="toggleHarga('hargaPubg')" data-name="PUBG Mobile">
-        <img src="https://static.vecteezy.com/system/resources/previews/021/010/060/non_2x/pubg-mobile-logo-icon-free-png.png" alt="PUBG Mobile" class="w-full h-32 object-contain mb-2">
-        <div class="text-center font-semibold">PUBG Mobile</div>
-      </div>
-      <!-- Tambahkan game lainnya di sini -->
-    </div>
-    <div id="hargaPubg" class="mt-6 hidden bg-white p-4 rounded shadow">
-      <h3 class="text-xl font-bold mb-2">Harga PUBG Mobile</h3>
-      <ul class="list-disc pl-5 space-y-2">
-        <li>60 UC - Rp 10.000 - <a href="https://wa.me/6281224859600?text=Halo,%20saya%20ingin%20pesan%2060%20UC%20PUBG%20Mobile" class="text-green-600 underline" target="_blank">Pesan via WA</a></li>
-        <li>325 UC - Rp 50.000 - <a href="https://wa.me/6281224859600?text=Halo,%20saya%20ingin%20pesan%20325%20UC%20PUBG%20Mobile" class="text-green-600 underline" target="_blank">Pesan via WA</a></li>
-        <li>660 UC - Rp 100.000 - <a href="https://wa.me/6281224859600?text=Halo,%20saya%20ingin%20pesan%20660%20UC%20PUBG%20Mobile" class="text-green-600 underline" target="_blank">Pesan via WA</a></li>
-        <li>1800 UC - Rp 250.000 - <a href="https://wa.me/6281224859600?text=Halo,%20saya%20ingin%20pesan%201800%20UC%20PUBG%20Mobile" class="text-green-600 underline" target="_blank">Pesan via WA</a></li>
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <div class="container">
+    <a class="navbar-brand" href="#">TopUpGame</a>
+    <div class="collapse navbar-collapse">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link" href="#login">Login</a></li>
+        <li class="nav-item"><a class="nav-link" href="#register">Register</a></li>
+        <li class="nav-item"><a class="nav-link logout d-none" href="#" onclick="logout()">Logout</a></li>
       </ul>
     </div>
-  </section>
+  </div>
+</nav>
 
-  <section id="section-Leaderboard" class="container mx-auto p-6"><h2 class="text-xl font-bold">Leaderboard</h2></section>
-  <section id="section-CekTransaksi" class="container mx-auto p-6"><h2 class="text-xl font-bold">Cek Transaksi</h2></section>
-  <section id="section-LightMode" class="container mx-auto p-6"><h2 class="text-xl font-bold">Light Mode</h2></section>
-  <section id="section-CekRegionML" class="container mx-auto p-6"><h2 class="text-xl font-bold">Cek Region Mobile Legends</h2></section>
-  <section id="section-Navigasi" class="container mx-auto p-6"><h2 class="text-xl font-bold">Navigasi</h2></section>
-  <section id="section-DaftarLayanan" class="container mx-auto p-6"><h2 class="text-xl font-bold">Daftar Layanan</h2></section>
-  <section id="section-FAQ" class="container mx-auto p-6"><h2 class="text-xl font-bold">FAQ</h2></section>
-  <section id="section-DukunganPelanggan" class="container mx-auto p-6"><h2 class="text-xl font-bold">Dukungan Pelanggan</h2></section>
-  <section id="section-API" class="container mx-auto p-6"><h2 class="text-xl font-bold">API</h2></section>
+<div class="auth-container" id="auth-box">
+  <h3 class="text-center" id="auth-title">Login</h3>
+  <form id="auth-form">
+    <div id="name-group" class="mb-3 d-none">
+      <label for="name" class="form-label">Nama Lengkap</label>
+      <input type="text" class="form-control" id="name" name="name">
+    </div>
+    <div class="mb-3">
+      <label for="email" class="form-label">Email / Username</label>
+      <input type="text" class="form-control" id="email" name="email" required>
+    </div>
+    <div id="wa-group" class="mb-3 d-none">
+      <label for="wa" class="form-label">Nomor WhatsApp</label>
+      <input type="text" class="form-control" id="wa" name="wa">
+    </div>
+    <div class="mb-3">
+      <label for="password" class="form-label">Password</label>
+      <input type="password" class="form-control" id="password" name="password" required>
+    </div>
+    <button type="submit" class="btn btn-primary w-100" id="submit-btn">Login</button>
+    <div class="text-center mt-3">
+      <small><a href="#" onclick="toggleAuth()">Belum punya akun? Daftar di sini</a></small>
+    </div>
+  </form>
+</div>
 
-  <!-- Script -->
-  <script>
-    function showSection(name) {
-      const sections = document.querySelectorAll('section[id^="section-"]');
-      sections.forEach(sec => sec.classList.remove('active'));
-      document.getElementById(`section-${name}`).classList.add('active');
+<script>
+  let isLogin = true;
+
+  function toggleAuth() {
+    isLogin = !isLogin;
+    document.getElementById('auth-title').innerText = isLogin ? 'Login' : 'Register';
+    document.getElementById('submit-btn').innerText = isLogin ? 'Login' : 'Register';
+    document.getElementById('name-group').classList.toggle('d-none', isLogin);
+    document.getElementById('wa-group').classList.toggle('d-none', isLogin);
+    document.querySelector('#auth-form small a').innerText = isLogin ? 'Belum punya akun? Daftar di sini' : 'Sudah punya akun? Login di sini';
+  }
+
+  document.getElementById('auth-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const data = {
+      email: document.getElementById('email').value,
+      password: document.getElementById('password').value
+    };
+
+    if (!isLogin) {
+      data.name = document.getElementById('name').value;
+      data.wa = document.getElementById('wa').value;
     }
 
-    function searchGames() {
-      const input = document.getElementById('searchInput').value.toLowerCase();
-      const cards = document.querySelectorAll('#gameList > div');
-      cards.forEach(card => {
-        const name = card.getAttribute('data-name').toLowerCase();
-        card.classList.toggle('hidden', !name.includes(input));
-      });
-    }
+    fetch(`/api/${isLogin ? 'login' : 'register'}`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    })
+    .then(res => res.json())
+    .then(res => {
+      if (res.token) {
+        localStorage.setItem('token', res.token);
+        alert(`${isLogin ? 'Login' : 'Registrasi'} berhasil!`);
+        document.querySelector('.logout').classList.remove('d-none');
+        document.getElementById('auth-box').classList.add('d-none');
+      } else {
+        alert(res.message || 'Terjadi kesalahan.');
+      }
+    });
+  });
 
-    function toggleHarga(id) {
-      const allHarga = document.querySelectorAll('[id^="harga"]');
-      allHarga.forEach(harga => harga.classList.add('hidden'));
-      document.getElementById(id).classList.remove('hidden');
-    }
-  </script>
+  function logout() {
+    localStorage.removeItem('token');
+    alert('Berhasil logout.');
+    document.querySelector('.logout').classList.add('d-none');
+    document.getElementById('auth-box').classList.remove('d-none');
+  }
+</script>
+
 </body>
 </html>
+
