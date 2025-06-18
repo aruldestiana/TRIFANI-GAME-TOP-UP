@@ -3,117 +3,140 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Top Up Game - Login & Register</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-  <style>
-    body {
-      background: #f0f4f8;
-    }
-    .auth-container {
-      max-width: 400px;
-      margin: 80px auto;
-      padding: 30px;
-      background: white;
-      border-radius: 12px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    }
-    .nav-link.logout {
-      color: red;
-    }
-  </style>
+  <title>Trifani Gold - Top Up Game</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script src="script.js" defer></script>
 </head>
-<body>
-
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-  <div class="container">
-    <a class="navbar-brand" href="#">TopUpGame</a>
-    <div class="collapse navbar-collapse">
-      <ul class="navbar-nav ms-auto">
-        <li class="nav-item"><a class="nav-link" href="#login">Login</a></li>
-        <li class="nav-item"><a class="nav-link" href="#register">Register</a></li>
-        <li class="nav-item"><a class="nav-link logout d-none" href="#" onclick="logout()">Logout</a></li>
-      </ul>
+<body class="bg-gray-100 text-gray-800 dark:bg-gray-900 dark:text-white">
+  <nav class="flex justify-between items-center p-4 bg-blue-600 text-white">
+    <div class="logo text-xl font-bold">Trifani Gold</div>
+    <ul class="flex gap-4">
+      <li><a href="index.html">Beranda</a></li>
+      <li><a href="games.html">Semua Game</a></li>
+      <li><a href="leaderboard.html">Leaderboard</a></li>
+      <li><a href="cek-transaksi.html">Cek Transaksi</a></li>
+      <li><a href="#">Daftar Layanan</a></li>
+      <li><a href="#">FAQ</a></li>
+      <li><a href="#">Kontak</a></li>
+      <li><a href="#">API</a></li>
+      <li><a href="#">Cek Region ML</a></li>
+    </ul>
+    <div class="flex gap-2">
+      <button id="mode-toggle">🌓</button>
+      <button id="logout" class="bg-red-500 px-3 py-1 rounded">Logout</button>
     </div>
-  </div>
-</nav>
+  </nav>
 
-<div class="auth-container" id="auth-box">
-  <h3 class="text-center" id="auth-title">Login</h3>
-  <form id="auth-form">
-    <div id="name-group" class="mb-3 d-none">
-      <label for="name" class="form-label">Nama Lengkap</label>
-      <input type="text" class="form-control" id="name" name="name">
+  <section id="auth-section" class="p-4 grid md:grid-cols-2 gap-4">
+    <form id="login-form" class="p-4 border rounded">
+      <h2 class="text-xl font-semibold mb-2">Login</h2>
+      <input type="text" placeholder="Email / Username" required class="w-full mb-2 p-2 border rounded">
+      <input type="password" placeholder="Password" required class="w-full mb-2 p-2 border rounded">
+      <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded">Login</button>
+    </form>
+    <form id="register-form" class="p-4 border rounded">
+      <h2 class="text-xl font-semibold mb-2">Register</h2>
+      <input type="text" placeholder="Nama" required class="w-full mb-2 p-2 border rounded">
+      <input type="email" placeholder="Email" required class="w-full mb-2 p-2 border rounded">
+      <input type="password" placeholder="Password" required class="w-full mb-2 p-2 border rounded">
+      <input type="text" placeholder="Nomor WhatsApp" required class="w-full mb-2 p-2 border rounded">
+      <button type="submit" class="bg-green-600 text-white px-4 py-2 rounded">Daftar</button>
+    </form>
+  </section>
+
+  <header class="hero p-8 bg-blue-700 text-white text-center">
+    <h1 class="text-3xl font-bold">Selamat Datang di Trifani Gold</h1>
+    <p class="text-lg">Top up cepat dan aman!</p>
+  </header>
+
+  <section id="games-section" class="p-4">
+    <input type="search" id="search-game" placeholder="Cari Game..." class="w-full p-2 mb-4 border rounded">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div class="game-card p-4 border rounded cursor-pointer" onclick="openGameDetail('mlbb')">
+        <img src="img/mlbb.jpg" alt="Mobile Legends" class="w-full h-48 object-cover mb-2">
+        <h3 class="text-center font-semibold">Mobile Legends</h3>
+      </div>
+      <div class="game-card p-4 border rounded cursor-pointer" onclick="openGameDetail('freefire')">
+        <img src="img/freefire.jpg" alt="Free Fire" class="w-full h-48 object-cover mb-2">
+        <h3 class="text-center font-semibold">Free Fire</h3>
+      </div>
+      <div class="game-card p-4 border rounded cursor-pointer" onclick="openGameDetail('pubg')">
+        <img src="img/pubg.jpg" alt="PUBG Mobile" class="w-full h-48 object-cover mb-2">
+        <h3 class="text-center font-semibold">PUBG Mobile</h3>
+      </div>
     </div>
-    <div class="mb-3">
-      <label for="email" class="form-label">Email / Username</label>
-      <input type="text" class="form-control" id="email" name="email" required>
+  </section>
+
+  <section id="detail-game-section" class="p-4">
+    <h2 class="text-2xl font-semibold mb-4">Top Up Mobile Legends</h2>
+    <form id="topup-form" class="space-y-2">
+      <input type="text" placeholder="User ID" required class="w-full p-2 border rounded">
+      <input type="text" placeholder="Server ID" required class="w-full p-2 border rounded">
+      <select class="w-full p-2 border rounded">
+        <option>86 UC - Rp12.000</option>
+        <option>720 UC - Rp120.000</option>
+      </select>
+      <input type="text" placeholder="Nomor WhatsApp" required class="w-full p-2 border rounded">
+      <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded">Beli Sekarang</button>
+    </form>
+  </section>
+
+  <section id="checkout-section" class="p-4">
+    <h2 class="text-2xl font-semibold mb-4">Checkout</h2>
+    <div class="checkout-summary mb-4">
+      <p>Game: Mobile Legends</p>
+      <p>User ID: 123456789</p>
+      <p>Nominal: 86 UC</p>
+      <p>Harga: Rp12.000</p>
+      <p>Status: <span id="payment-status">Menunggu Pembayaran</span></p>
     </div>
-    <div id="wa-group" class="mb-3 d-none">
-      <label for="wa" class="form-label">Nomor WhatsApp</label>
-      <input type="text" class="form-control" id="wa" name="wa">
+    <h3 class="mb-2">Pilih Metode Pembayaran</h3>
+    <form id="payment-form" class="space-y-1">
+      <label><input type="radio" name="metode" value="qris" checked> QRIS</label><br>
+      <label><input type="radio" name="metode" value="dana"> Dana</label><br>
+      <label><input type="radio" name="metode" value="ovo"> OVO</label><br>
+      <label><input type="radio" name="metode" value="gopay"> Gopay</label><br>
+      <label><input type="radio" name="metode" value="shopeepay"> ShopeePay</label><br>
+      <button type="submit" class="bg-green-600 text-white px-4 py-2 rounded">Bayar Sekarang</button>
+    </form>
+    <div id="qris-container" class="mt-4">
+      <img src="img/qris-placeholder.png" alt="QRIS Dynamic akan muncul di sini" class="mx-auto w-48">
     </div>
-    <div class="mb-3">
-      <label for="password" class="form-label">Password</label>
-      <input type="password" class="form-control" id="password" name="password" required>
+  </section>
+
+  <section id="cek-transaksi-section" class="p-4">
+    <h2 class="text-2xl font-semibold mb-2">Cek Transaksi</h2>
+    <input type="text" placeholder="Nomor WhatsApp atau Kode Transaksi" class="w-full p-2 mb-2 border rounded">
+    <button onclick="cekTransaksi()" class="bg-blue-600 text-white px-4 py-2 rounded">Cari</button>
+    <div id="hasil-transaksi" class="mt-4"></div>
+  </section>
+
+  <section id="leaderboard-section" class="p-4">
+    <h2 class="text-2xl font-semibold mb-2">Top 10 Pembeli</h2>
+    <ol id="leaderboard" class="list-decimal pl-6">
+      <li>User A - Rp5.000.000</li>
+      <li>User B - Rp4.200.000</li>
+    </ol>
+  </section>
+
+  <section id="admin-panel" class="p-4">
+    <h2 class="text-2xl font-semibold mb-2">Admin Panel</h2>
+    <form id="admin-login" class="mb-4">
+      <input type="text" placeholder="Username" class="w-full p-2 border rounded mb-2">
+      <input type="password" placeholder="Password" class="w-full p-2 border rounded mb-2">
+      <button type="submit" class="bg-red-600 text-white px-4 py-2 rounded">Login Admin</button>
+    </form>
+    <div id="admin-dashboard">
+      <h3 class="text-xl font-semibold mb-2">Daftar Transaksi</h3>
+      <div id="semua-transaksi" class="mb-4"></div>
+      <h3 class="text-xl font-semibold mb-2">Kelola Game</h3>
+      <form class="space-y-2">
+        <input type="text" placeholder="Nama Game" class="w-full p-2 border rounded">
+        <input type="number" placeholder="Harga" class="w-full p-2 border rounded">
+        <button class="bg-blue-600 text-white px-4 py-2 rounded">Tambah Game</button>
+      </form>
     </div>
-    <button type="submit" class="btn btn-primary w-100" id="submit-btn">Login</button>
-    <div class="text-center mt-3">
-      <small><a href="#" onclick="toggleAuth()">Belum punya akun? Daftar di sini</a></small>
-    </div>
-  </form>
-</div>
-
-<script>
-  let isLogin = true;
-
-  function toggleAuth() {
-    isLogin = !isLogin;
-    document.getElementById('auth-title').innerText = isLogin ? 'Login' : 'Register';
-    document.getElementById('submit-btn').innerText = isLogin ? 'Login' : 'Register';
-    document.getElementById('name-group').classList.toggle('d-none', isLogin);
-    document.getElementById('wa-group').classList.toggle('d-none', isLogin);
-    document.querySelector('#auth-form small a').innerText = isLogin ? 'Belum punya akun? Daftar di sini' : 'Sudah punya akun? Login di sini';
-  }
-
-  document.getElementById('auth-form').addEventListener('submit', function(e) {
-    e.preventDefault();
-
-    const data = {
-      email: document.getElementById('email').value,
-      password: document.getElementById('password').value
-    };
-
-    if (!isLogin) {
-      data.name = document.getElementById('name').value;
-      data.wa = document.getElementById('wa').value;
-    }
-
-    fetch(`/api/${isLogin ? 'login' : 'register'}`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(data)
-    })
-    .then(res => res.json())
-    .then(res => {
-      if (res.token) {
-        localStorage.setItem('token', res.token);
-        alert(`${isLogin ? 'Login' : 'Registrasi'} berhasil!`);
-        document.querySelector('.logout').classList.remove('d-none');
-        document.getElementById('auth-box').classList.add('d-none');
-      } else {
-        alert(res.message || 'Terjadi kesalahan.');
-      }
-    });
-  });
-
-  function logout() {
-    localStorage.removeItem('token');
-    alert('Berhasil logout.');
-    document.querySelector('.logout').classList.add('d-none');
-    document.getElementById('auth-box').classList.remove('d-none');
-  }
-</script>
-
+  </section>
 </body>
 </html>
-
